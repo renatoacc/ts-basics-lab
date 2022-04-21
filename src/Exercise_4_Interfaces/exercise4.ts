@@ -12,8 +12,12 @@ export default () => {
   // Instructions:
   // • Create an interface `CartItem` and replace the param's type with it
   // • Make variantId optional
-
-  function addToCart(item: {id: number, title: string, variantId: number}) {
+interface CartItem {
+  id: number, 
+  title: string, 
+  variantId?: number,
+}
+  function addToCart(item: CartItem) {
     console.log('[Exercise 4.1]', `Adding "${item.title}" to cart.`);
   }
 
@@ -23,8 +27,11 @@ export default () => {
   // Instructions:
   // • Create and implement an interface on `Person` to ensure it always has accessible
   //   `name` and `age` member properties.
-
-  class Person {
+interface Person {
+  name: string,
+  age:number, 
+}
+  class Person implements Person{
     constructor(public name: string, public age: number) {}
   }
 
@@ -44,6 +51,14 @@ export default () => {
     name: string;
   }
   // [/do not edit]
+  interface Coords {
+    latitude: number,
+    longitude: number,
+  }
+
+  interface City {
+    coords: Coords;
+  }
 
   const montreal = {
     coords: {
@@ -55,8 +70,8 @@ export default () => {
 
   const tampa = {
     coords: {
-      latitude: '27.9478',
-      longitude: '-82.4584',
+      latitude: 27.9478,
+      longitude: -82.4584,
     },
     name: 'Tampa',
   };
@@ -82,10 +97,10 @@ export default () => {
 
   const user = new User('Dog', 1);
 
-  console.log(user.id); // readable
+  console.log(user.id, user.name); // readable
 
   user.name = 'Harold'; // writable
-  user.id = 5; // not writable
+  // user.id = 5; // not writable
 
   console.log(`User:`, user)
 }
